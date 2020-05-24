@@ -53,6 +53,7 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
     --mount=type=cache,target=/go/pkg/mod \
     --mount=type=tmpfs,target=/go/src/ \
         set -x \
+        && git config --global http.postBuffer 524288000 \
         && git clone https://github.com/docker/distribution.git . \
         && git checkout -q "$REGISTRY_COMMIT" \
         && GOPATH="/go/src/github.com/docker/distribution/Godeps/_workspace:$GOPATH" \
